@@ -1,0 +1,101 @@
+Grupo,Empresa,Detalle_Servicio,Prioridad
+CAT N1,TechSupport Express,Atención Inicial Nivel 1,Baja
+CAT N1,Global Connect,Soporte Usuario Final,Baja
+CAT N1,Sistemas Ágiles,Gestión de Incidencias,Baja
+CAT N1,First Line Solutions,Recepción de Tickets,Baja
+CAT N1,Quick Answer IT,Soporte Remoto Básico,Baja
+CAT N1,FrontDesk Tech,Atención Multicanal,Baja
+CAT N1,Entry Point Systems,Validación de Datos,Baja
+CAT N1,Basic Help S.A.,Soporte Telefónico N1,Baja
+CAT N1,Direct Support,Gestión de Dudas N1,Baja
+CAT N1,Start Services,Triaje de Casos,Baja
+CAT N1,Prime Support,Atención Comercial,Baja
+CAT N1,Link IT,Conectividad Básica,Baja
+CAT N1,Smart Desk,Ayuda al Usuario,Baja
+CAT N1,Ready Tech,Primer Contacto,Baja
+CAT N1,Clear Voice,Soporte Audio Básico,Baja
+CAT N1,Net Entry,Configuración Inicial,Baja
+CAT N1,Swift Help,Resolución Rápida,Baja
+CAT N1,Base Tech,Mantenimiento Nivel 1,Baja
+CAT N1,Help Now,Asistencia Inmediata,Baja
+CAT N1,Level One Inc,Gestión de Accesos,Baja
+CAT N1,Alpha Support,Soporte General,Baja
+CAT N1,Beta Help,Ayuda Técnica,Baja
+CAT N1,Gamma Services,Soporte Operativo,Baja
+CAT N1,Delta Tech,Gestión de Usuarios,Baja
+CAT N1,Epsilon IT,Soporte Interno,Baja
+CAT MASIVO,Masivo Corp A,Gestión de Volumen,Media
+CAT MASIVO,Masivo Corp B,Gestión de Volumen,Media
+CAT MASIVO,Bulk Services,Procesamiento Masivo,Media
+CAT MASIVO,Mega Support,Atención Masiva,Media
+CAT MASIVO,Giant Data,Carga de Datos,Media
+CAT MASIVO,Global Mass,Soporte Global,Media
+CAT MASIVO,Massive Logic,Lógica de Volumen,Media
+CAT MASIVO,Big Help,Asistencia Masiva,Media
+CAT MASIVO,Large Scale IT,Sistemas a Escala,Media
+CAT MASIVO,Volume Pro,Optimización Masiva,Media
+CAT MASIVO,Broad Tech,Cobertura Amplia,Media
+CAT MASIVO,Universal Connect,Conexión Total,Media
+CAT MASIVO,World Wide Help,Soporte Mundial,Media
+CAT MASIVO,Infinite Support,Soporte Continuo,Media
+CAT MASIVO,Total Reach,Alcance Total,Media
+CAT MASIVO,High Volume IT,IT de Alto Volumen,Media
+CAT MASIVO,Scale Up,Escalabilidad Masiva,Media
+CAT MASIVO,Massive Flow,Flujo de Datos,Media
+CAT MASIVO,Stream Line,Líneas de Atención,Media
+CAT MASIVO,Capacity Inc,Gestión de Capacidad,Media
+CAT MASIVO,Network Giant,Red Gigante,Media
+CAT MASIVO,Mega Connect,Conexión Masiva,Media
+CAT MASIVO,Data Flood,Control de Datos,Media
+CAT MASIVO,Support Wave,Ola de Soporte,Media
+CAT MASIVO,Power User S.A.,Soporte Premium Masivo,Media
+CAT N2 VOZ,Voice Masters,Soporte Voz N2,Alta
+CAT N2 VOZ,Digital Audio,Calidad de Voz,Alta
+CAT N2 VOZ,SIP Experts,Telefonía IP,Alta
+CAT N2 VOZ,Telecom Pro,Redes de Voz,Alta
+CAT N2 VOZ,Voice Logic,Enrutamiento Voz,Alta
+CAT N2 VOZ,Audio Flow,Flujo de Audio,Alta
+CAT N2 VOZ,Net Voice,Voz sobre IP,Alta
+CAT N2 VOZ,Global Audio,Soporte Internacional,Alta
+CAT N2 VOZ,Clear Call,Nitidez de Llamada,Alta
+CAT N2 VOZ,Smart Voice,IA de Voz,Alta
+CAT N2 VOZ,Voice Guard,Seguridad de Voz,Alta
+CAT N2 VOZ,Audio Bridge,Puentes de Voz,Alta
+CAT N2 VOZ,Signal Tech,Señalización N2,Alta
+CAT N2 VOZ,Dial Experts,Sistemas de Marcación,Alta
+CAT N2 VOZ,Call Control,Control de Llamadas,Alta
+CAT N2 VOZ,Voice Core,Núcleo de Voz,Alta
+CAT N2 VOZ,Sound Pro,Ingeniería de Sonido,Alta
+CAT N2 VOZ,Vocal IT,Sistemas Vocales,Alta
+CAT N2 VOZ,Echo Stop,Cancelación de Eco,Alta
+CAT N2 VOZ,Voice Hub,Nodo de Voz,Alta
+CAT N2 VOZ,Wave Tech,Ondas de Audio,Alta
+CAT N2 VOZ,Stream Voice,Voz en Tiempo Real,Alta
+CAT N2 VOZ,Logic Audio,Procesamiento N2,Alta
+CAT N2 VOZ,Pure Sound,Audio Profesional,Alta
+CAT N2 VOZ,Total Voice,Voz Integral,Alta
+CAT N2 DATOS,Data Experts,Soporte Redes Core,Alta
+CAT N2 DATOS,Net Admin S.A.,Configuración de Routers,Alta
+CAT N2 DATOS,Cisco Master,Certificación de Redes,Alta
+CAT N2 DATOS,Secure Net,Seguridad de Datos N2,Alta
+CAT N2 DATOS,Optic Fiber Pro,Soporte Fibra Oscura,Alta
+CAT N2 DATOS,Bandwidth Inc,Gestión de Ancho de Banda,Alta
+CAT N2 DATOS,Packet Loss Tech,Diagnóstico de Red,Alta
+CAT N2 DATOS,Switch Master,Gestión de Switching,Alta
+CAT N2 DATOS,Cloud Data,Servicios en la Nube,Alta
+CAT N2 DATOS,Storage Pro,Soporte Almacenamiento,Alta
+CAT N2 DATOS,Fast Packet,Optimización de Datos,Alta
+CAT N2 DATOS,Cyber Shield,Protección de Red,Alta
+CAT N2 DATOS,Mainframe Tech,Sistemas Centrales,Alta
+CAT N2 DATOS,BGP Expert,Enrutamiento Exterior,Alta
+CAT N2 DATOS,Latency Logic,Reducción de Latencia,Alta
+CAT N2 DATOS,Global Data Hub,Nodos de Datos,Alta
+CAT N2 DATOS,Server Force,Mantenimiento de Servidores,Alta
+CAT N2 DATOS,Infra Pro,Infraestructura Crítica,Alta
+CAT N2 DATOS,Logic Gate,Puertas Lógicas N2,Alta
+CAT N2 DATOS,Byte Master,Gestión de Datos,Alta
+CAT N2 DATOS,Flow Control,Control de Flujo,Alta
+CAT N2 DATOS,Core Systems,Sistemas Core,Alta
+CAT N2 DATOS,Net Guard,Protección Perimetral,Alta
+CAT N2 DATOS,Data Link,Enlace de Datos,Alta
+CAT N2 DATOS,Link Master,Gestión de Enlaces,Alta
