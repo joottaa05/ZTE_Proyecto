@@ -1,110 +1,73 @@
 import reflex as rx
-from app.front.components import (
-    navbar, 
-    card_grafica
-)
-from app.back.database import (
-    State, 
-    get_pie
-)
-
+from app.back.database import Database
+from app.front.components import navbar, get_pie_chart, mobile_view, pc_view
 
 def index() -> rx.Component:
-    """Página de bienvenida."""
     return rx.box(
         navbar(),
-        rx.center(
+        rx.vstack(
+            rx.heading("Panel de Control ZTE", size="8", margin_top="3em", margin_bottom="1em"),
+            
+            # TOTAL GLOBAL unificado con el estilo de las otras tarjetas
             rx.vstack(
-                rx.heading(
-                    "ZTE",
-                    size="9",
-                    style={
-                        "color": "#005C97",
-                        "font_size": "10vw",
-                    },
-                ),
+                rx.text("TOTAL GLOBAL", font_weight="bold", size="5"),
+                get_pie_chart(Database.total_data, "TOTAL GLOBAL"),
+                padding="2em", 
+                bg=rx.color_mode_cond("white", "#1E1E20"),
+                border_radius="20px", 
+                width="100%", 
+                border="1px solid #E5E7EB",
+                margin_bottom="2em"
             ),
-            width="100%",
-            height="100vh",
-        ),
-    )
 
-
-def services() -> rx.Component:
-    """Panel con las 4 ruletas interactivas."""
-    return rx.box(
-        navbar(),
-        rx.container(
-            rx.vstack(
-                rx.heading(
-                    "Panel de Control", 
-                    margin_top="4em"
-                ),
-                rx.grid(
-                    card_grafica(
-                        "CAT N1", 
-                        get_pie(State.c_n1, "#3B82F6", "CAT N1")
-                    ),
-                    card_grafica(
-                        "CAT MASIVO", 
-                        get_pie(State.c_mas, "#10B981", "CAT MASIVO")
-                    ),
-                    card_grafica(
-                        "CAT N2 VOZ", 
-                        get_pie(State.c_voz, "#F59E0B", "CAT N2 VOZ")
-                    ),
-                    card_grafica(
-                        "CAT N2 DATOS", 
-                        get_pie(State.c_dat, "#EF4444", "CAT N2 DATOS")
-                    ),
-                    columns=rx.breakpoints(initial="1", sm="2"),
-                    spacing="6",
-                    width="100%",
-                ),
-                padding_bottom="5em",
+            # GRUPO DE RUEDAS POR RECURSO
+            rx.grid(
+                rx.foreach(Database.group_names, lambda name: rx.vstack(
+                    rx.text(name, font_weight="bold", size="5"),
+                    get_pie_chart(Database.categorized_data[name], name),
+                    padding="2em", bg=rx.color_mode_cond("white", "#1E1E20"),
+                    border_radius="20px", width="100%", border="1px solid #E5E7EB"
+                )),
+                columns=rx.breakpoints(initial="1", sm="2"), 
+                spacing="6", width="100%",
             ),
+            padding="2em", max_width="1200px", margin="auto"
         ),
-        on_mount=State.load_data,
+        on_mount=Database.load_data
     )
-
 
 def details() -> rx.Component:
-    """Página de tabla filtrada."""
     return rx.box(
         navbar(),
-        rx.container(
-            rx.vstack(
-                rx.heading(
-                    f"Detalle: {State.selected_category}", 
-                    margin_top="4em"
-                ),
-                rx.input(
-                    placeholder="Escribe para buscar...",
-                    on_change=State.set_search_text,
-                    width="100%",
-                ),
-                rx.data_table(
-                    data=State.filtered_rows,
-                    columns=[
-                        "Grupo", 
-                        "Empresa", 
-                        "Servicio", 
-                        "Prioridad"
-                    ],
-                    pagination=True,
-                ),
-                rx.button(
-                    "Cerrar", 
-                    on_click=rx.redirect("/services")
-                ),
-                width="100%",
-                spacing="4",
+        rx.vstack(
+            rx.heading(f"Recurso: {Database.selected_category}", size="7", margin_top="3em"),
+            rx.hstack(
+                rx.input(placeholder="Buscar...", on_change=Database.set_search_text, flex="1"),
+                rx.select(["TODAS", "Alta", "Media", "Baja"], on_change=Database.set_priority_filter, width="150px")
             ),
-        ),
+            rx.box(
+                rx.foreach(Database.filtered_rows, mobile_view),
+                width="100%", display=["block", "block", "none"],
+                border="1px solid #E5E7EB", border_radius="10px", overflow="hidden"
+            ),
+            rx.table.root(
+                rx.table.header(
+                    rx.table.row(
+                        rx.table.column_header_cell("ID"),
+                        rx.table.column_header_cell("Fecha"),
+                        rx.table.column_header_cell("Estado"),
+                        rx.table.column_header_cell("Prioridad"),
+                        rx.table.column_header_cell("Descripción"),
+                    )
+                ),
+                rx.table.body(rx.foreach(Database.filtered_rows, pc_view)),
+                width="100%", variant="surface", display=["none", "none", "table"]
+            ),
+            rx.button("← Volver", on_click=rx.redirect("/"), variant="outline"),
+            padding="2em", width="100%", max_width="1200px", margin="auto", spacing="5"
+        )
     )
 
-
-app = rx.App()
+app = rx.App(theme=rx.theme(accent_color="blue"))
 app.add_page(index, route="/")
-app.add_page(services, route="/services")
 app.add_page(details, route="/details")

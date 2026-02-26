@@ -1,70 +1,79 @@
 import reflex as rx
 import pandas as pd
+import os
 
-class State(rx.State):
-    data: list[dict] = []
-    c_n1: list[dict] = []
-    c_mas: list[dict] = []
-    c_voz: list[dict] = []
-    c_dat: list[dict] = []
+class Database(rx.State):
+    categorized_data: dict[str, list[dict]] = {}
+    error_message: str = ""
+    is_loading: bool = False
     selected_category: str = ""
     search_text: str = ""
+    priority_filter: str = "TODAS"
+    
+    color_palette: list[str] = ["#005C97", "#00A8E8", "#003366", "#33CCFF", "#0078D7", "#6366F1", "#8B5CF6"]
 
-    def load_data(self):
-        try:
-            df = pd.read_csv("db.csv")
-            df["Grupo"] = df["Grupo"].str.strip().str.upper()
-            
-            def get_c(g_name):
-                f = df[df["Grupo"] == g_name.upper()]
-                res = f["Empresa"].value_counts().reset_index()
-                res.columns = ["name", "value"]
-                return res.to_dict("records")
+    def set_search_text(self, text: str):
+        self.search_text = text
 
-            self.c_n1 = get_c("CAT N1")
-            self.c_mas = get_c("CAT MASIVO")
-            self.c_voz = get_c("CAT N2 VOZ")
-            self.c_dat = get_c("CAT N2 DATOS")
-        except Exception as e:
-            print(f"Error: {e}")
+    def set_priority_filter(self, value: str):
+        self.priority_filter = value
 
     @rx.var
-    def filtered_rows(self) -> list[list]:
+    def total_data(self) -> list[dict]:
+        all_counts = {}
+        for group in self.categorized_data.values():
+            for item in group:
+                name = item["name"]
+                all_counts[name] = all_counts.get(name, 0) + item["value"]
+        
+        result = [{"name": k, "value": v} for k, v in all_counts.items()]
+        for i, item in enumerate(result):
+            item["fill"] = self.color_palette[i % len(self.color_palette)]
+        return result
+
+    def load_data(self):
+        self.is_loading = True
+        file_path = "db.csv"
+        if not os.path.exists(file_path):
+            return rx.toast.error("Archivo db.csv no encontrado.")
+        try:
+            df = pd.read_csv(file_path)
+            df["Recurso"] = df["Recurso"].str.strip().str.upper()
+            new_data = {}
+            for grupo in df["Recurso"].unique():
+                f = df[df["Recurso"] == grupo]
+                counts = f["Estado"].value_counts().reset_index()
+                counts.columns = ["name", "value"]
+                records = counts.to_dict("records")
+                for i, item in enumerate(records):
+                    item["fill"] = self.color_palette[i % len(self.color_palette)]
+                new_data[grupo] = records
+            self.categorized_data = new_data
+        except Exception as e:
+            self.error_message = str(e)
+        finally:
+            self.is_loading = False
+
+    @rx.var
+    def group_names(self) -> list[str]:
+        return list(self.categorized_data.keys())
+
+    @rx.var
+    def filtered_rows(self) -> list[dict]:
         try:
             df = pd.read_csv("db.csv")
-            df["Grupo"] = df["Grupo"].str.strip().str.upper()
-            if self.selected_category:
-                df = df[df["Grupo"] == self.selected_category]
+            df["Recurso"] = df["Recurso"].str.strip().str.upper()
+            if self.selected_category != "TOTAL GLOBAL":
+                df = df[df["Recurso"] == self.selected_category]
+            
             if self.search_text:
-                mask = df.apply(
-                    lambda r: r.astype(str).str.contains(
-                        self.search_text, case=False
-                    ).any(), axis=1
-                )
+                mask = df.apply(lambda r: r.astype(str).str.contains(self.search_text, case=False).any(), axis=1)
                 df = df[mask]
-            return df.values.tolist()
-        except:
-            return []
+            if self.priority_filter != "TODAS":
+                df = df[df["Prioridad"].str.upper() == self.priority_filter.upper()]
+            return df.to_dict("records")
+        except: return []
 
     def go_to_details(self, category: str):
         self.selected_category = category.upper()
-        self.search_text = ""
         return rx.redirect("/details")
-
-def get_pie(ds: list[dict], clr: str, cat_name: str) -> rx.Component:
-    return rx.recharts.pie_chart(
-        rx.recharts.pie(
-            data=ds,
-            data_key="value",
-            name_key="name",
-            cx="50%",
-            cy="50%",
-            outer_radius=70,
-            fill=clr,
-            # SOLUCIÓN: lambda sin argumentos ()
-            on_click=lambda: State.go_to_details(cat_name),
-        ),
-        rx.recharts.graphing_tooltip(),
-        width="100%",
-        height=250,
-    )
