@@ -1,7 +1,6 @@
 from playwright.sync_api import sync_playwright, TimeoutError as PWTimeout
-import csv
-
-from reflex.page import page
+import pandas as pd
+from datetime import datetime
 
 CONFIG = {
     "url": "http://voafijo.r.lan/voa2/index.jsp",
@@ -10,121 +9,160 @@ CONFIG = {
     "headless": False
 }
 
+def parse_fecha(valor):
+    """
+    Limpia caracteres invisibles y prueba múltiples formatos de fecha.
+    Admite:
+        - dd/mm/yyyy HH:MM:SS
+        - dd/mm/yyyy HH:MM
+    """
+    if not valor:
+        return None
+
+    limpio = (
+        valor.replace("\xa0", " ")
+             .replace("\u2007", " ")
+             .replace("\u202F", " ")
+             .replace("\t", " ")
+             .replace("\n", " ")
+             .strip()
+    )
+
+    formatos = [
+        "%d/%m/%Y %H:%M:%S",
+        "%d/%m/%Y %H:%M"
+    ]
+
+    for fmt in formatos:
+        try:
+            return datetime.strptime(limpio, fmt)
+        except:
+            pass
+
+    print("Fecha inválida tras probar formatos:", repr(limpio))
+    return None
+
+
 def main():
     with sync_playwright() as p:
-
         browser = p.chromium.launch(
             headless=CONFIG["headless"],
             timeout=20000,
-            slow_mo=200  # para ver pasos
+            slow_mo=200
         )
 
         page = browser.new_page()
-
-        print("Accediendo al login…")
         page.goto(CONFIG["url"], wait_until="domcontentloaded")
 
         # LOGIN
         page.fill("input[name='Userlogin']", CONFIG["user"])
         page.fill("input[name='pass']", CONFIG["pass"])
         page.click("img[name='Image8']")
-
         page.wait_for_timeout(1200)
 
-        # --------------------------------------------------------
-        # SELECCIONAR EL FRAME SUPERIOR
-        # --------------------------------------------------------
-        print("Buscando frame 'superior'…")
-
+        # FRAME SUPERIOR
         superior = page.frame(name="superior")
+        superior.wait_for_selector("select[name='Perfil']", timeout=4000)
 
-        if not superior:
-            print("No encontré el frame 'superior'.")
-            return
-
-        print("Frame superior encontrado")
-
-        # ESPERAR QUE APAREZCA EL SELECT
-        try:
-            superior.wait_for_selector("select[name='Perfil']", timeout=4000)
-        except PWTimeout:
-            print("No se encontró el select Perfil dentro del frame superior.")
-            return
-
-        # SELECCIONAR CATe.N1
-        print("Seleccionando perfil CATe.N1…")
         superior.select_option("select[name='Perfil']", label="OyM.PR")
-
-                
-        # SELECCIONAR LAS TRES TIPOLOGÍAS DE CLIENTE
-        print("Seleccionando tipologías de cliente…")
-
-        # Selección múltiple
-        
-        superior.select_option(
-            "select[name='TipologiaCliente']",
-            label=["GRANDE", "MEDIANA", "PEQUEÑA"]
-        )
-
-
-        print("Tipologías seleccionadas.")
-
-
-        # PULSAR BOTÓN BUSCAR
-        print("Pulsando botón 'Buscar'…")
+        superior.select_option("select[name='TipologiaCliente']", label=["GRANDE", "MEDIANA", "PEQUEÑA"])
         superior.get_by_text("Buscar", exact=True).click()
 
-        # CAMBIAR A FRAME PRINCIPAL
-        print("Cambiando a frame 'principal'…")
+        # FRAME PRINCIPAL
         principal = page.frame(name="principal")
-
-        if not principal:
-            print("No encontré el frame 'principal'.")
-            return
-
-        print("Frame principal encontrado.")
-
-        # ESPERAR TABLA
         principal.wait_for_selector("#tabla", timeout=5000)
 
-        # OBTENER FILAS
+        # HEADERS
+        header_cells = principal.query_selector_all("#tabla tr td.encabezado")
+        header_names = [h.inner_text().strip() for h in header_cells]
+
+        print("HEADERS REALES DETECTADOS:")
+        print(header_names)
+
         filas = principal.query_selector_all("tr.lista")
+        ahora = datetime.now()
+        registros = []
 
-        print(f"Filas encontradas: {len(filas)}")
+        # Columnas reales
+        COL_FECHA_ALTA = "Fecha Alta"
+        COL_ID = "Id. Proceso"
+        COL_ESTADO = "Estado"
+        COL_RECURSO = "Recurso"
 
-        # CSV DE SALIDA
-        with open("resultados.csv", "w", newline="", encoding="utf-8") as f:
-            writer = csv.writer(f)
-            writer.writerow([
-                "IdProceso",
-                "FechaAlta",
-                "Estado",
-                "Descripcion",
-                "Recurso",
-                "WebServices"
-            ])
+        for fila in filas:
+            tds = fila.query_selector_all("td")
+            valores = [td.inner_text().strip() for td in tds]
+            fila_dict = dict(zip(header_names, valores))
 
-            for fila in filas:
-                tds = fila.query_selector_all("td")
+            fecha_raw = fila_dict.get(COL_FECHA_ALTA, "")
+            id_proc   = fila_dict.get(COL_ID, "")
+            estado    = fila_dict.get(COL_ESTADO, "")
+            recurso   = fila_dict.get(COL_RECURSO, "")
 
-                # CAMBIA ESTOS ÍNDICES SI TU TABLA ES DIFERENTE
-                id_proceso = tds[2].inner_text().strip()
-                estado = tds[4].inner_text().strip()
-                recurso = tds[3].inner_text().strip()
-                fecha_alta = tds[12].inner_text().strip()
-                descripcion = tds[3].inner_text().strip()   # ← AJUSTAR SI CAMBIA
+            
+            fecha_reporte = parse_fecha(fecha_raw)
+            if fecha_reporte is None:
+                continue
 
-                writer.writerow([
-                    id_proceso,
-                    fecha_alta,
-                    estado,
-                    descripcion,
-                    recurso,
-                    "VOA TAREAS"
-                ])
+            ahora = datetime.now()
 
-        print("CSV generado como resultados.csv")
+            
+            #CALCULAR SEGUNDOS TRANSCURRIDOS
+            diff = (ahora - fecha_reporte).total_seconds()
 
-        input("ywrty")
+            # APLICAR REGLAS SEGÚN TIEMPO
+            if diff < 504000:
+                print(fecha_reporte)
+                continue  # IGNORAR REGISTRO
+
+            elif diff >= 604800:
+                color = "rojo"
+
+            else:  # 504000 <= diff < 604800
+                color = "naranja"
+
+
+            registros.append({
+                "fecha_reporte": fecha_raw,
+                "web": "VOA TAREAS",
+                "grupo": recurso,
+                "estado": estado,
+                "fecha": ahora.strftime("%d/%m/%Y %H:%M:%S"),
+                "id": id_proc,
+                "recurso_averia": recurso,
+                "notas": "",
+                "color": color
+            })
+
+        # EXPORTAR
+        columnas_finales = [
+            "fecha_reporte",
+            "web",
+            "grupo",
+            "estado",
+            "fecha",
+            "id",
+            "recurso_averia",
+            "notas",
+            "color"
+        ]
+
+        df = pd.DataFrame(registros)
+
+        # Añadir columnas si faltan
+        for col in columnas_finales:
+            if col not in df.columns:
+                df[col] = ""
+
+        df = df[columnas_finales]
+
+        df.to_csv("resultados.csv", sep=";", index=False, encoding="utf-8-sig")
+
+        input("Proceso completado. Presiona Enter para salir...")
+
+        print("CSV generado correctamente como resultados.csv")
+        print("Registros exportados:", len(df))
+
+
 if __name__ == "__main__":
     main()
