@@ -1,101 +1,101 @@
-Grupo,Empresa,Detalle_Servicio,Prioridad
-CAT N1,TechSupport Express,Atención Inicial Nivel 1,Baja
-CAT N1,Global Connect,Soporte Usuario Final,Baja
-CAT N1,Sistemas Ágiles,Gestión de Incidencias,Baja
-CAT N1,First Line Solutions,Recepción de Tickets,Baja
-CAT N1,Quick Answer IT,Soporte Remoto Básico,Baja
-CAT N1,FrontDesk Tech,Atención Multicanal,Baja
-CAT N1,Entry Point Systems,Validación de Datos,Baja
-CAT N1,Basic Help S.A.,Soporte Telefónico N1,Baja
-CAT N1,Direct Support,Gestión de Dudas N1,Baja
-CAT N1,Start Services,Triaje de Casos,Baja
-CAT N1,Prime Support,Atención Comercial,Baja
-CAT N1,Link IT,Conectividad Básica,Baja
-CAT N1,Smart Desk,Ayuda al Usuario,Baja
-CAT N1,Ready Tech,Primer Contacto,Baja
-CAT N1,Clear Voice,Soporte Audio Básico,Baja
-CAT N1,Net Entry,Configuración Inicial,Baja
-CAT N1,Swift Help,Resolución Rápida,Baja
-CAT N1,Base Tech,Mantenimiento Nivel 1,Baja
-CAT N1,Help Now,Asistencia Inmediata,Baja
-CAT N1,Level One Inc,Gestión de Accesos,Baja
-CAT N1,Alpha Support,Soporte General,Baja
-CAT N1,Beta Help,Ayuda Técnica,Baja
-CAT N1,Gamma Services,Soporte Operativo,Baja
-CAT N1,Delta Tech,Gestión de Usuarios,Baja
-CAT N1,Epsilon IT,Soporte Interno,Baja
-CAT MASIVO,Masivo Corp A,Gestión de Volumen,Media
-CAT MASIVO,Masivo Corp B,Gestión de Volumen,Media
-CAT MASIVO,Bulk Services,Procesamiento Masivo,Media
-CAT MASIVO,Mega Support,Atención Masiva,Media
-CAT MASIVO,Giant Data,Carga de Datos,Media
-CAT MASIVO,Global Mass,Soporte Global,Media
-CAT MASIVO,Massive Logic,Lógica de Volumen,Media
-CAT MASIVO,Big Help,Asistencia Masiva,Media
-CAT MASIVO,Large Scale IT,Sistemas a Escala,Media
-CAT MASIVO,Volume Pro,Optimización Masiva,Media
-CAT MASIVO,Broad Tech,Cobertura Amplia,Media
-CAT MASIVO,Universal Connect,Conexión Total,Media
-CAT MASIVO,World Wide Help,Soporte Mundial,Media
-CAT MASIVO,Infinite Support,Soporte Continuo,Media
-CAT MASIVO,Total Reach,Alcance Total,Media
-CAT MASIVO,High Volume IT,IT de Alto Volumen,Media
-CAT MASIVO,Scale Up,Escalabilidad Masiva,Media
-CAT MASIVO,Massive Flow,Flujo de Datos,Media
-CAT MASIVO,Stream Line,Líneas de Atención,Media
-CAT MASIVO,Capacity Inc,Gestión de Capacidad,Media
-CAT MASIVO,Network Giant,Red Gigante,Media
-CAT MASIVO,Mega Connect,Conexión Masiva,Media
-CAT MASIVO,Data Flood,Control de Datos,Media
-CAT MASIVO,Support Wave,Ola de Soporte,Media
-CAT MASIVO,Power User S.A.,Soporte Premium Masivo,Media
-CAT N2 VOZ,Voice Masters,Soporte Voz N2,Alta
-CAT N2 VOZ,Digital Audio,Calidad de Voz,Alta
-CAT N2 VOZ,SIP Experts,Telefonía IP,Alta
-CAT N2 VOZ,Telecom Pro,Redes de Voz,Alta
-CAT N2 VOZ,Voice Logic,Enrutamiento Voz,Alta
-CAT N2 VOZ,Audio Flow,Flujo de Audio,Alta
-CAT N2 VOZ,Net Voice,Voz sobre IP,Alta
-CAT N2 VOZ,Global Audio,Soporte Internacional,Alta
-CAT N2 VOZ,Clear Call,Nitidez de Llamada,Alta
-CAT N2 VOZ,Smart Voice,IA de Voz,Alta
-CAT N2 VOZ,Voice Guard,Seguridad de Voz,Alta
-CAT N2 VOZ,Audio Bridge,Puentes de Voz,Alta
-CAT N2 VOZ,Signal Tech,Señalización N2,Alta
-CAT N2 VOZ,Dial Experts,Sistemas de Marcación,Alta
-CAT N2 VOZ,Call Control,Control de Llamadas,Alta
-CAT N2 VOZ,Voice Core,Núcleo de Voz,Alta
-CAT N2 VOZ,Sound Pro,Ingeniería de Sonido,Alta
-CAT N2 VOZ,Vocal IT,Sistemas Vocales,Alta
-CAT N2 VOZ,Echo Stop,Cancelación de Eco,Alta
-CAT N2 VOZ,Voice Hub,Nodo de Voz,Alta
-CAT N2 VOZ,Wave Tech,Ondas de Audio,Alta
-CAT N2 VOZ,Stream Voice,Voz en Tiempo Real,Alta
-CAT N2 VOZ,Logic Audio,Procesamiento N2,Alta
-CAT N2 VOZ,Pure Sound,Audio Profesional,Alta
-CAT N2 VOZ,Total Voice,Voz Integral,Alta
-CAT N2 DATOS,Data Experts,Soporte Redes Core,Alta
-CAT N2 DATOS,Net Admin S.A.,Configuración de Routers,Alta
-CAT N2 DATOS,Cisco Master,Certificación de Redes,Alta
-CAT N2 DATOS,Secure Net,Seguridad de Datos N2,Alta
-CAT N2 DATOS,Optic Fiber Pro,Soporte Fibra Oscura,Alta
-CAT N2 DATOS,Bandwidth Inc,Gestión de Ancho de Banda,Alta
-CAT N2 DATOS,Packet Loss Tech,Diagnóstico de Red,Alta
-CAT N2 DATOS,Switch Master,Gestión de Switching,Alta
-CAT N2 DATOS,Cloud Data,Servicios en la Nube,Alta
-CAT N2 DATOS,Storage Pro,Soporte Almacenamiento,Alta
-CAT N2 DATOS,Fast Packet,Optimización de Datos,Alta
-CAT N2 DATOS,Cyber Shield,Protección de Red,Alta
-CAT N2 DATOS,Mainframe Tech,Sistemas Centrales,Alta
-CAT N2 DATOS,BGP Expert,Enrutamiento Exterior,Alta
-CAT N2 DATOS,Latency Logic,Reducción de Latencia,Alta
-CAT N2 DATOS,Global Data Hub,Nodos de Datos,Alta
-CAT N2 DATOS,Server Force,Mantenimiento de Servidores,Alta
-CAT N2 DATOS,Infra Pro,Infraestructura Crítica,Alta
-CAT N2 DATOS,Logic Gate,Puertas Lógicas N2,Alta
-CAT N2 DATOS,Byte Master,Gestión de Datos,Alta
-CAT N2 DATOS,Flow Control,Control de Flujo,Alta
-CAT N2 DATOS,Core Systems,Sistemas Core,Alta
-CAT N2 DATOS,Net Guard,Protección Perimetral,Alta
-CAT N2 DATOS,Data Link,Enlace de Datos,Alta
-CAT N2 DATOS,Link Master,Gestión de Enlaces,Alta
+IdProceso,Recurso,Estado,Prioridad,FechaAlta,Descripcion
+1001,SISTEMAS,COMPLETADO,Media,2024-05-01,Migración de base de datos terminada
+1002,SISTEMAS,PENDIENTE,Alta,2024-05-02,Revisión de logs de seguridad
+1003,REDES,ERROR,Alta,2024-05-02,Fallo en el nodo principal
+1004,REDES,PROCESANDO,Baja,2024-05-03,Actualización de firmware routers
+1005,SOPORTE,COMPLETADO,Baja,2024-05-03,Ticket de usuario resuelto
+1006,DESARROLLO,PENDIENTE,Alta,2024-05-04,Deploy de nueva API
+1007,SISTEMAS,ERROR,Media,2024-05-04,Espacio en disco insuficiente
+1008,DESARROLLO,PROCESANDO,Alta,2024-05-05,Fix de bug en login
+1009,SEGURIDAD,COMPLETADO,Alta,2024-05-05,Escaneo de vulnerabilidades
+1010,REDES,PENDIENTE,Media,2024-05-06,Configuración de nueva VLAN
+1011,SOPORTE,ERROR,Baja,2024-05-06,Fallo en impresora planta 2
+1012,SISTEMAS,COMPLETADO,Media,2024-05-07,Reinicio preventivo servidores
+1013,DESARROLLO,PENDIENTE,Baja,2024-05-07,Maquetación de nuevo dashboard
+1014,SEGURIDAD,PROCESANDO,Alta,2024-05-08,Mitigación de ataque DDoS
+1015,REDES,COMPLETADO,Media,2024-05-08,Cambio de cableado estructurado
+1016,SOPORTE,PROCESANDO,Baja,2024-05-09,Instalación de software remoto
+1017,SISTEMAS,PENDIENTE,Alta,2024-05-09,Backup de volumen crítico
+1018,DESARROLLO,ERROR,Media,2024-05-10,Error 500 en entorno de pruebas
+1019,SEGURIDAD,COMPLETADO,Baja,2024-05-10,Actualización de antivirus
+1020,REDES,PENDIENTE,Alta,2024-05-11,Caída selectiva de repetidores
+1021,SISTEMAS,PROCESANDO,Media,2024-05-11,Mantenimiento de clúster
+1022,SOPORTE,COMPLETADO,Baja,2024-05-12,Configuración de VPN usuario
+1023,DESARROLLO,PENDIENTE,Media,2024-05-12,Optimización de consultas SQL
+1024,SEGURIDAD,ERROR,Alta,2024-05-13,Intento de acceso no autorizado
+1025,REDES,COMPLETADO,Baja,2024-05-13,Pruebas de latencia fibra
+1026,SISTEMAS,PENDIENTE,Media,2024-05-14,Limpieza de archivos temporales
+1027,SOPORTE,PROCESANDO,Alta,2024-05-14,Recuperación de cuenta directiva
+1028,DESARROLLO,COMPLETADO,Baja,2024-05-15,Refactorización de helpers
+1029,SEGURIDAD,PENDIENTE,Media,2024-05-15,Auditoría de contraseñas
+1030,REDES,ERROR,Alta,2024-05-16,Saturación de ancho de banda
+1031,SISTEMAS,COMPLETADO,Baja,2024-05-16,Informe de rendimiento mensual
+1032,SOPORTE,PENDIENTE,Media,2024-05-17,Duda sobre uso de Microsoft Teams
+1033,DESARROLLO,PROCESANDO,Alta,2024-05-17,Integración con pasarela de pagos
+1034,SEGURIDAD,COMPLETADO,Media,2024-05-18,Parche de día cero aplicado
+1035,REDES,PENDIENTE,Baja,2024-05-18,Inventario de switches
+1036,SISTEMAS,ERROR,Alta,2024-05-19,Kernel panic en nodo secundario
+1037,SOPORTE,COMPLETADO,Media,2024-05-19,Cambio de tóner realizado
+1038,DESARROLLO,PENDIENTE,Baja,2024-05-20,Documentación técnica API
+1039,SEGURIDAD,PROCESANDO,Alta,2024-05-20,Análisis de malware detectado
+1040,REDES,COMPLETADO,Media,2024-05-21,Revisión de firewall perimetral
+1041,SISTEMAS,PENDIENTE,Baja,2024-05-21,Solicitud de cuota de disco
+1042,SOPORTE,ERROR,Alta,2024-05-22,Pantallazo azul en contabilidad
+1043,DESARROLLO,COMPLETADO,Media,2024-05-22,Cierre de tickets Jira sprint
+1044,SEGURIDAD,PENDIENTE,Baja,2024-05-23,Revisión de permisos carpetas
+1045,REDES,PROCESANDO,Alta,2024-05-23,Ampliación de cobertura WiFi
+1046,SISTEMAS,COMPLETADO,Media,2024-05-24,Sincronización AD finalizada
+1047,SOPORTE,PENDIENTE,Baja,2024-05-24,Problema con el ratón inalámbrico
+1048,DESARROLLO,ERROR,Alta,2024-05-25,Fallo crítico en pipeline CI/CD
+1049,SEGURIDAD,COMPLETADO,Media,2024-05-25,Certificados SSL renovados
+1050,REDES,PENDIENTE,Baja,2024-05-26,Limpieza de racks en CPD
+1051,SISTEMAS,PROCESANDO,Alta,2024-05-26,Migración a nube pública
+1052,SOPORTE,COMPLETADO,Media,2024-05-27,Configuración de móvil nuevo
+1053,DESARROLLO,PENDIENTE,Baja,2024-05-27,Cambio de textos en UI
+1054,SEGURIDAD,ERROR,Alta,2024-05-28,Alerta de ransomware en sandbox
+1055,REDES,COMPLETADO,Media,2024-05-28,Velocidad de red verificada
+1056,SISTEMAS,PENDIENTE,Baja,2024-05-29,Consulta de backups antiguos
+1057,SOPORTE,PROCESANDO,Alta,2024-05-29,Error en base de datos local
+1058,DESARROLLO,COMPLETADO,Media,2024-05-30,Subida de versión estable
+1059,SEGURIDAD,PENDIENTE,Baja,2024-05-30,Verificación de logs de acceso
+1060,REDES,ERROR,Alta,2024-05-31,Corte de fibra externa
+1061,SISTEMAS,COMPLETADO,Media,2024-05-31,Actualización de BIOS servidores
+1062,SOPORTE,PENDIENTE,Baja,2024-06-01,Solicitud de teclado mecánico
+1063,DESARROLLO,PROCESANDO,Alta,2024-06-01,Creación de microservicio auth
+1064,SEGURIDAD,COMPLETADO,Media,2024-06-02,Cifrado de discos completado
+1065,REDES,PENDIENTE,Baja,2024-06-02,Estadísticas de uso mensual
+1066,SISTEMAS,ERROR,Alta,2024-06-03,Fallo de fuente de alimentación
+1067,SOPORTE,COMPLETADO,Media,2024-06-03,Asistencia en videoconferencia
+1068,DESARROLLO,PENDIENTE,Baja,2024-06-04,Arreglo de estilos CSS
+1069,SEGURIDAD,PROCESANDO,Alta,2024-06-04,Investigación de IP sospechosa
+1070,REDES,COMPLETADO,Media,2024-06-05,Actualización de firmware APs
+1071,SISTEMAS,PENDIENTE,Baja,2024-06-05,Reasignación de licencias Office
+1072,SOPORTE,ERROR,Alta,2024-06-06,PC no arranca tras actualización
+1073,DESARROLLO,COMPLETADO,Media,2024-06-06,Merge de rama principal
+1074,SEGURIDAD,PENDIENTE,Baja,2024-06-07,Revisión de política de BYOD
+1075,REDES,PROCESANDO,Alta,2024-06-07,Sustitución de switch core
+1076,SISTEMAS,COMPLETADO,Media,2024-06-08,Reducción de tamaño de logs
+1077,SOPORTE,PENDIENTE,Baja,2024-06-08,Pérdida de acceso a carpeta red
+1078,DESARROLLO,ERROR,Alta,2024-06-09,Excepción no controlada en producción
+1079,SEGURIDAD,COMPLETADO,Media,2024-06-09,Limpieza de cuentas inactivas
+1080,REDES,PENDIENTE,Baja,2024-06-10,Etiquetado de puertos en CPD
+1081,SISTEMAS,PROCESANDO,Alta,2024-06-10,Instalación de parches de OS
+1082,SOPORTE,COMPLETADO,Media,2024-06-11,Desbloqueo de usuario AD
+1083,DESARROLLO,PENDIENTE,Baja,2024-06-11,Corrección de erratas manual
+1084,SEGURIDAD,ERROR,Alta,2024-06-12,Detección de sniffing en red
+1085,REDES,COMPLETADO,Media,2024-06-12,Configuración de túnel IPsec
+1086,SISTEMAS,PENDIENTE,Baja,2024-06-13,Duda sobre política de retención
+1087,SOPORTE,PROCESANDO,Alta,2024-06-13,Recuperación de archivos borrados
+1088,DESARROLLO,COMPLETADO,Media,2024-06-14,Tests unitarios pasados
+1089,SEGURIDAD,PENDIENTE,Baja,2024-06-14,Validación de backups físicos
+1090,REDES,ERROR,Alta,2024-06-15,Bucle de red detectado en planta 1
+1091,SISTEMAS,COMPLETADO,Media,2024-06-15,Ampliación de RAM servidor web
+1092,SOPORTE,PENDIENTE,Baja,2024-06-16,Monitor parpadea aleatoriamente
+1093,DESARROLLO,PROCESANDO,Alta,2024-06-16,Cambio de lógica de negocio
+1094,SEGURIDAD,COMPLETADO,Media,2024-06-17,Firewall de aplicaciones configurado
+1095,REDES,PENDIENTE,Baja,2024-06-17,Pruebas de cobertura en almacén
+1096,SISTEMAS,ERROR,Alta,2024-06-18,Sobretensión en rack principal
+1097,SOPORTE,COMPLETADO,Media,2024-06-18,Instalación de drivers scanner
+1098,DESARROLLO,PENDIENTE,Baja,2024-06-19,Ajuste de margen en logo
+1099,SEGURIDAD,PROCESANDO,Alta,2024-06-19,Respuesta ante incidente phishing
+1100,REDES,COMPLETADO,Media,2024-06-20,Cierre de puertos inseguros
