@@ -1,101 +1,101 @@
-IdProceso,Recurso,Estado,Prioridad,FechaAlta,Descripcion
-1001,SISTEMAS,COMPLETADO,Media,2024-05-01,Migración de base de datos terminada
-1002,SISTEMAS,PENDIENTE,Alta,2024-05-02,Revisión de logs de seguridad
-1003,REDES,ERROR,Alta,2024-05-02,Fallo en el nodo principal
-1004,REDES,PROCESANDO,Baja,2024-05-03,Actualización de firmware routers
-1005,SOPORTE,COMPLETADO,Baja,2024-05-03,Ticket de usuario resuelto
-1006,DESARROLLO,PENDIENTE,Alta,2024-05-04,Deploy de nueva API
-1007,SISTEMAS,ERROR,Media,2024-05-04,Espacio en disco insuficiente
-1008,DESARROLLO,PROCESANDO,Alta,2024-05-05,Fix de bug en login
-1009,SEGURIDAD,COMPLETADO,Alta,2024-05-05,Escaneo de vulnerabilidades
-1010,REDES,PENDIENTE,Media,2024-05-06,Configuración de nueva VLAN
-1011,SOPORTE,ERROR,Baja,2024-05-06,Fallo en impresora planta 2
-1012,SISTEMAS,COMPLETADO,Media,2024-05-07,Reinicio preventivo servidores
-1013,DESARROLLO,PENDIENTE,Baja,2024-05-07,Maquetación de nuevo dashboard
-1014,SEGURIDAD,PROCESANDO,Alta,2024-05-08,Mitigación de ataque DDoS
-1015,REDES,COMPLETADO,Media,2024-05-08,Cambio de cableado estructurado
-1016,SOPORTE,PROCESANDO,Baja,2024-05-09,Instalación de software remoto
-1017,SISTEMAS,PENDIENTE,Alta,2024-05-09,Backup de volumen crítico
-1018,DESARROLLO,ERROR,Media,2024-05-10,Error 500 en entorno de pruebas
-1019,SEGURIDAD,COMPLETADO,Baja,2024-05-10,Actualización de antivirus
-1020,REDES,PENDIENTE,Alta,2024-05-11,Caída selectiva de repetidores
-1021,SISTEMAS,PROCESANDO,Media,2024-05-11,Mantenimiento de clúster
-1022,SOPORTE,COMPLETADO,Baja,2024-05-12,Configuración de VPN usuario
-1023,DESARROLLO,PENDIENTE,Media,2024-05-12,Optimización de consultas SQL
-1024,SEGURIDAD,ERROR,Alta,2024-05-13,Intento de acceso no autorizado
-1025,REDES,COMPLETADO,Baja,2024-05-13,Pruebas de latencia fibra
-1026,SISTEMAS,PENDIENTE,Media,2024-05-14,Limpieza de archivos temporales
-1027,SOPORTE,PROCESANDO,Alta,2024-05-14,Recuperación de cuenta directiva
-1028,DESARROLLO,COMPLETADO,Baja,2024-05-15,Refactorización de helpers
-1029,SEGURIDAD,PENDIENTE,Media,2024-05-15,Auditoría de contraseñas
-1030,REDES,ERROR,Alta,2024-05-16,Saturación de ancho de banda
-1031,SISTEMAS,COMPLETADO,Baja,2024-05-16,Informe de rendimiento mensual
-1032,SOPORTE,PENDIENTE,Media,2024-05-17,Duda sobre uso de Microsoft Teams
-1033,DESARROLLO,PROCESANDO,Alta,2024-05-17,Integración con pasarela de pagos
-1034,SEGURIDAD,COMPLETADO,Media,2024-05-18,Parche de día cero aplicado
-1035,REDES,PENDIENTE,Baja,2024-05-18,Inventario de switches
-1036,SISTEMAS,ERROR,Alta,2024-05-19,Kernel panic en nodo secundario
-1037,SOPORTE,COMPLETADO,Media,2024-05-19,Cambio de tóner realizado
-1038,DESARROLLO,PENDIENTE,Baja,2024-05-20,Documentación técnica API
-1039,SEGURIDAD,PROCESANDO,Alta,2024-05-20,Análisis de malware detectado
-1040,REDES,COMPLETADO,Media,2024-05-21,Revisión de firewall perimetral
-1041,SISTEMAS,PENDIENTE,Baja,2024-05-21,Solicitud de cuota de disco
-1042,SOPORTE,ERROR,Alta,2024-05-22,Pantallazo azul en contabilidad
-1043,DESARROLLO,COMPLETADO,Media,2024-05-22,Cierre de tickets Jira sprint
-1044,SEGURIDAD,PENDIENTE,Baja,2024-05-23,Revisión de permisos carpetas
-1045,REDES,PROCESANDO,Alta,2024-05-23,Ampliación de cobertura WiFi
-1046,SISTEMAS,COMPLETADO,Media,2024-05-24,Sincronización AD finalizada
-1047,SOPORTE,PENDIENTE,Baja,2024-05-24,Problema con el ratón inalámbrico
-1048,DESARROLLO,ERROR,Alta,2024-05-25,Fallo crítico en pipeline CI/CD
-1049,SEGURIDAD,COMPLETADO,Media,2024-05-25,Certificados SSL renovados
-1050,REDES,PENDIENTE,Baja,2024-05-26,Limpieza de racks en CPD
-1051,SISTEMAS,PROCESANDO,Alta,2024-05-26,Migración a nube pública
-1052,SOPORTE,COMPLETADO,Media,2024-05-27,Configuración de móvil nuevo
-1053,DESARROLLO,PENDIENTE,Baja,2024-05-27,Cambio de textos en UI
-1054,SEGURIDAD,ERROR,Alta,2024-05-28,Alerta de ransomware en sandbox
-1055,REDES,COMPLETADO,Media,2024-05-28,Velocidad de red verificada
-1056,SISTEMAS,PENDIENTE,Baja,2024-05-29,Consulta de backups antiguos
-1057,SOPORTE,PROCESANDO,Alta,2024-05-29,Error en base de datos local
-1058,DESARROLLO,COMPLETADO,Media,2024-05-30,Subida de versión estable
-1059,SEGURIDAD,PENDIENTE,Baja,2024-05-30,Verificación de logs de acceso
-1060,REDES,ERROR,Alta,2024-05-31,Corte de fibra externa
-1061,SISTEMAS,COMPLETADO,Media,2024-05-31,Actualización de BIOS servidores
-1062,SOPORTE,PENDIENTE,Baja,2024-06-01,Solicitud de teclado mecánico
-1063,DESARROLLO,PROCESANDO,Alta,2024-06-01,Creación de microservicio auth
-1064,SEGURIDAD,COMPLETADO,Media,2024-06-02,Cifrado de discos completado
-1065,REDES,PENDIENTE,Baja,2024-06-02,Estadísticas de uso mensual
-1066,SISTEMAS,ERROR,Alta,2024-06-03,Fallo de fuente de alimentación
-1067,SOPORTE,COMPLETADO,Media,2024-06-03,Asistencia en videoconferencia
-1068,DESARROLLO,PENDIENTE,Baja,2024-06-04,Arreglo de estilos CSS
-1069,SEGURIDAD,PROCESANDO,Alta,2024-06-04,Investigación de IP sospechosa
-1070,REDES,COMPLETADO,Media,2024-06-05,Actualización de firmware APs
-1071,SISTEMAS,PENDIENTE,Baja,2024-06-05,Reasignación de licencias Office
-1072,SOPORTE,ERROR,Alta,2024-06-06,PC no arranca tras actualización
-1073,DESARROLLO,COMPLETADO,Media,2024-06-06,Merge de rama principal
-1074,SEGURIDAD,PENDIENTE,Baja,2024-06-07,Revisión de política de BYOD
-1075,REDES,PROCESANDO,Alta,2024-06-07,Sustitución de switch core
-1076,SISTEMAS,COMPLETADO,Media,2024-06-08,Reducción de tamaño de logs
-1077,SOPORTE,PENDIENTE,Baja,2024-06-08,Pérdida de acceso a carpeta red
-1078,DESARROLLO,ERROR,Alta,2024-06-09,Excepción no controlada en producción
-1079,SEGURIDAD,COMPLETADO,Media,2024-06-09,Limpieza de cuentas inactivas
-1080,REDES,PENDIENTE,Baja,2024-06-10,Etiquetado de puertos en CPD
-1081,SISTEMAS,PROCESANDO,Alta,2024-06-10,Instalación de parches de OS
-1082,SOPORTE,COMPLETADO,Media,2024-06-11,Desbloqueo de usuario AD
-1083,DESARROLLO,PENDIENTE,Baja,2024-06-11,Corrección de erratas manual
-1084,SEGURIDAD,ERROR,Alta,2024-06-12,Detección de sniffing en red
-1085,REDES,COMPLETADO,Media,2024-06-12,Configuración de túnel IPsec
-1086,SISTEMAS,PENDIENTE,Baja,2024-06-13,Duda sobre política de retención
-1087,SOPORTE,PROCESANDO,Alta,2024-06-13,Recuperación de archivos borrados
-1088,DESARROLLO,COMPLETADO,Media,2024-06-14,Tests unitarios pasados
-1089,SEGURIDAD,PENDIENTE,Baja,2024-06-14,Validación de backups físicos
-1090,REDES,ERROR,Alta,2024-06-15,Bucle de red detectado en planta 1
-1091,SISTEMAS,COMPLETADO,Media,2024-06-15,Ampliación de RAM servidor web
-1092,SOPORTE,PENDIENTE,Baja,2024-06-16,Monitor parpadea aleatoriamente
-1093,DESARROLLO,PROCESANDO,Alta,2024-06-16,Cambio de lógica de negocio
-1094,SEGURIDAD,COMPLETADO,Media,2024-06-17,Firewall de aplicaciones configurado
-1095,REDES,PENDIENTE,Baja,2024-06-17,Pruebas de cobertura en almacén
-1096,SISTEMAS,ERROR,Alta,2024-06-18,Sobretensión en rack principal
-1097,SOPORTE,COMPLETADO,Media,2024-06-18,Instalación de drivers scanner
-1098,DESARROLLO,PENDIENTE,Baja,2024-06-19,Ajuste de margen en logo
-1099,SEGURIDAD,PROCESANDO,Alta,2024-06-19,Respuesta ante incidente phishing
-1100,REDES,COMPLETADO,Media,2024-06-20,Cierre de puertos inseguros
+IdProceso,FechaAlta,Estado,Descripcion,Recurso,Prioridad
+1,2026-02-01,WebServices,Error de autenticación API,CAT N1,Alta
+2,2026-02-01,TechSupport Express,Fallo en inicio de sesión,CAT N1,Baja
+3,2026-02-01,Atención Inicial Nivel 1,Consulta de saldo de datos,CAT N1,Media
+4,2026-02-02,WebServices,Timeout en respuesta de servidor,CAT N1,Alta
+5,2026-02-02,TechSupport Express,Error de base de datos local,CAT N1,Media
+6,2026-02-02,Atención Inicial Nivel 1,Activación de SIM pendiente,CAT N1,Baja
+7,2026-02-03,WebServices,Error 500 en endpoint consulta,CAT N1,Alta
+8,2026-02-03,TechSupport Express,Problemas de red inalámbrica,CAT N1,Alta
+9,2026-02-03,Atención Inicial Nivel 1,Configuración de APN móvil,CAT N1,Media
+10,2026-02-04,WebServices,Token de seguridad expirado,CAT N1,Baja
+11,2026-02-04,TechSupport Express,Fallo hardware módulo radio,CAT N2,Alta
+12,2026-02-04,Atención Inicial Nivel 1,Reporte de zona sin cobertura,CAT N2,Alta
+13,2026-02-05,WebServices,Error de formato JSON recibido,CAT N2,Baja
+14,2026-02-05,TechSupport Express,Actualización de firmware fallida,CAT N2,Media
+15,2026-02-05,Atención Inicial Nivel 1,Duplicidad de cuenta usuario,CAT N2,Media
+16,2026-02-06,WebServices,Carga lenta de microservicios,CAT N2,Baja
+17,2026-02-06,TechSupport Express,Interferencia de señal detectada,CAT N2,Alta
+18,2026-02-06,Atención Inicial Nivel 1,Error de facturación recurrente,CAT N2,Alta
+19,2026-02-07,WebServices,Desconexión de socket remoto,CAT N2,Media
+20,2026-02-07,TechSupport Express,Reinicio inesperado de nodo,CAT N2,Alta
+21,2026-02-07,Atención Inicial Nivel 1,Solicitud de cambio de plan,CAT N3,Baja
+22,2026-02-08,WebServices,Latencia alta en backbone,CAT N3,Alta
+23,2026-02-08,TechSupport Express,Error en tabla de enrutamiento,CAT N3,Alta
+24,2026-02-08,Atención Inicial Nivel 1,Baja de servicio solicitada,CAT N3,Media
+25,2026-02-09,WebServices,Error de DNS interno,CAT N3,Media
+26,2026-02-09,TechSupport Express,Saturación de CPU en core,CAT N3,Alta
+27,2026-02-09,Atención Inicial Nivel 1,Consulta técnica sobre 5G,CAT N3,Baja
+28,2026-02-10,WebServices,Inconsistencia de datos en DB,CAT N3,Media
+29,2026-02-10,TechSupport Express,Fuga de memoria detectada,CAT N3,Alta
+30,2026-02-10,Atención Inicial Nivel 1,Bloqueo de terminal por IMEI,CAT N3,Alta
+31,2026-02-11,WebServices,Certificado SSL inválido,EXPRESS,Alta
+32,2026-02-11,TechSupport Express,Acceso denegado a firewall,EXPRESS,Media
+33,2026-02-11,Atención Inicial Nivel 1,Cambio de dirección IP estática,EXPRESS,Baja
+34,2026-02-12,WebServices,Fallo en pasarela de pagos,EXPRESS,Alta
+35,2026-02-12,TechSupport Express,Error de sincronización horaria,EXPRESS,Baja
+36,2026-02-12,Atención Inicial Nivel 1,Portabilidad no completada,EXPRESS,Media
+37,2026-02-13,WebServices,Error en validación de identidad,EXPRESS,Alta
+38,2026-02-13,TechSupport Express,Caída de enlace de fibra,EXPRESS,Alta
+39,2026-02-13,Atención Inicial Nivel 1,Consulta de roaming internacional,EXPRESS,Baja
+40,2026-02-14,WebServices,Mantenimiento programado,EXPRESS,Baja
+41,2026-02-14,TechSupport Express,Sustitución de equipo dañada,CAT N1,Alta
+42,2026-02-14,Atención Inicial Nivel 1,Información sobre cobertura LTE,CAT N1,Baja
+43,2026-02-15,WebServices,Spam detectado en relay,CAT N1,Media
+44,2026-02-15,TechSupport Express,Configuración BGP errónea,CAT N1,Alta
+45,2026-02-15,Atención Inicial Nivel 1,Recuperación de contraseña PUK,CAT N1,Media
+46,2026-02-16,WebServices,Fallo de integridad de logs,CAT N1,Baja
+47,2026-02-16,TechSupport Express,Desbordamiento de búfer puerto 80,CAT N1,Alta
+48,2026-02-16,Atención Inicial Nivel 1,Activación de buzón de voz,CAT N1,Baja
+49,2026-02-17,WebServices,Ataque DDOS mitigado,CAT N1,Alta
+50,2026-02-17,TechSupport Express,Error en script de despliegue,CAT N1,Media
+51,2026-02-17,Atención Inicial Nivel 1,Queja por velocidad de navegación,CAT N2,Media
+52,2026-02-18,WebServices,Permisos insuficientes carpeta tmp,CAT N2,Baja
+53,2026-02-18,TechSupport Express,Alarma de temperatura en rack,CAT N2,Alta
+54,2026-02-18,Atención Inicial Nivel 1,Error de vinculación multisim,CAT N2,Media
+55,2026-02-19,WebServices,Problema con proveedor de nube,CAT N2,Alta
+56,2026-02-19,TechSupport Express,Saturación de cola de mensajes,CAT N2,Media
+57,2026-02-19,Atención Inicial Nivel 1,Reclamo por cobro de SMS,CAT N2,Baja
+58,2026-02-20,WebServices,Módulo de cifrado no responde,CAT N2,Alta
+59,2026-02-20,TechSupport Express,Fallo ventilador chasis,CAT N2,Media
+60,2026-02-20,Atención Inicial Nivel 1,Configuración de correo corporativo,CAT N2,Baja
+61,2026-02-21,WebServices,Error de redirección 301 infinito,CAT N3,Media
+62,2026-02-21,TechSupport Express,Corte de suministro eléctrico nodo,CAT N3,Alta
+63,2026-02-21,Atención Inicial Nivel 1,Soporte para eSIM en smartwatch,CAT N3,Baja
+64,2026-02-22,WebServices,Límite de conexiones SQL alcanzado,CAT N3,Alta
+65,2026-02-22,TechSupport Express,Vulnerabilidad detectada scanner,CAT N3,Alta
+66,2026-02-22,Atención Inicial Nivel 1,Consulta de beneficios fidelidad,CAT N3,Baja
+67,2026-02-23,WebServices,Incompatibilidad navegador antiguo,CAT N3,Baja
+68,2026-02-23,TechSupport Express,Pérdida de paquetes en salto 4,CAT N3,Media
+69,2026-02-23,Atención Inicial Nivel 1,Bloqueo por falta de pago,CAT N3,Alta
+70,2026-02-24,WebServices,Error carga recursos estáticos CDN,CAT N3,Baja
+71,2026-02-24,TechSupport Express,Reemplazo de módulo SFP,EXPRESS,Media
+72,2026-02-24,Atención Inicial Nivel 1,Activación de roaming por error,EXPRESS,Media
+73,2026-02-25,WebServices,Fallo de autenticación LDAP,EXPRESS,Alta
+74,2026-02-25,TechSupport Express,Cable de red desconectado,EXPRESS,Baja
+75,2026-02-25,Atención Inicial Nivel 1,Error en app móvil cliente,EXPRESS,Media
+76,2026-02-26,WebServices,Fuga de datos sospechosa,EXPRESS,Alta
+77,2026-02-26,TechSupport Express,Error de montaje unidad NFS,EXPRESS,Media
+78,2026-02-26,Atención Inicial Nivel 1,Suscripción a servicios premium,EXPRESS,Baja
+79,2026-02-27,WebServices,Optimización de consultas pesadas,EXPRESS,Baja
+80,2026-02-27,TechSupport Express,Caída masiva área metropolitana,EXPRESS,Alta
+81,2026-02-27,Atención Inicial Nivel 1,Duda sobre facturación digital,CAT N1,Baja
+82,2026-02-28,WebServices,Servidor ocupado (Busy),CAT N1,Media
+83,2026-02-28,TechSupport Express,Interrupción por vandalismo antena,CAT N1,Alta
+84,2026-02-28,Atención Inicial Nivel 1,Cambio de titularidad de línea,CAT N1,Baja
+85,2026-02-01,WebServices,Refactorización código obsoleto,CAT N1,Baja
+86,2026-02-02,TechSupport Express,Fallo SAI/UPS batería baja,CAT N1,Alta
+87,2026-02-03,Atención Inicial Nivel 1,Error de zona horaria dispositivo,CAT N1,Baja
+88,2026-02-04,WebServices,Headers HTTP malformados,CAT N1,Media
+89,2026-02-05,TechSupport Express,Error de enrutamiento estático,CAT N1,Media
+90,2026-02-06,Atención Inicial Nivel 1,Solicitud de micro-SIM física,CAT N2,Baja
+91,2026-02-07,WebServices,Problema persistente con CORS,CAT N2,Media
+92,2026-02-08,TechSupport Express,Inestabilidad en enlace microondas,CAT N2,Alta
+93,2026-02-09,Atención Inicial Nivel 1,Información sobre subasta 5G,CAT N2,Baja
+94,2026-02-10,WebServices,Error de parsing XML legado,CAT N2,Baja
+95,2026-02-11,TechSupport Express,Alarma de intrusión física sala,CAT N3,Alta
+96,2026-02-12,Atención Inicial Nivel 1,Reporte de estafa/phishing,CAT N3,Alta
+97,2026-02-13,WebServices,Compresión GZIP fallida,CAT N3,Baja
+98,2026-02-14,TechSupport Express,Degradación rendimiento disco SSD,CAT N3,Media
+99,2026-02-15,Atención Inicial Nivel 1,Consulta técnica fibra HFC,CAT N3,Baja
+100,2026-02-16,WebServices,Reinicio programado gateway,EXPRESS,Baja
