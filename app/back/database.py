@@ -4,19 +4,14 @@ import os
 
 class Database(rx.State):
     categorized_data: dict[str, list[dict]] = {}
-    error_message: str = ""
-    is_loading: bool = False
-    selected_category: str = ""
+    selected_category: str = "TOTAL GLOBAL"
     search_text: str = ""
     priority_filter: str = "TODAS"
     
     color_palette: list[str] = ["#005C97", "#00A8E8", "#003366", "#33CCFF", "#0078D7", "#6366F1", "#8B5CF6"]
 
-    def set_search_text(self, text: str):
-        self.search_text = text
-
-    def set_priority_filter(self, value: str):
-        self.priority_filter = value
+    def set_search_text(self, text: str): self.search_text = text
+    def set_priority_filter(self, value: str): self.priority_filter = value
 
     @rx.var
     def total_data(self) -> list[dict]:
@@ -25,17 +20,14 @@ class Database(rx.State):
             for item in group:
                 name = item["name"]
                 all_counts[name] = all_counts.get(name, 0) + item["value"]
-        
         result = [{"name": k, "value": v} for k, v in all_counts.items()]
         for i, item in enumerate(result):
             item["fill"] = self.color_palette[i % len(self.color_palette)]
         return result
 
     def load_data(self):
-        self.is_loading = True
         file_path = "db.csv"
-        if not os.path.exists(file_path):
-            return rx.toast.error("Archivo db.csv no encontrado.")
+        if not os.path.exists(file_path): return rx.toast.error("db.csv no encontrado")
         try:
             df = pd.read_csv(file_path)
             df["Recurso"] = df["Recurso"].str.strip().str.upper()
@@ -49,14 +41,10 @@ class Database(rx.State):
                     item["fill"] = self.color_palette[i % len(self.color_palette)]
                 new_data[grupo] = records
             self.categorized_data = new_data
-        except Exception as e:
-            self.error_message = str(e)
-        finally:
-            self.is_loading = False
+        except Exception as e: print(e)
 
     @rx.var
-    def group_names(self) -> list[str]:
-        return list(self.categorized_data.keys())
+    def group_names(self) -> list[str]: return list(self.categorized_data.keys())
 
     @rx.var
     def filtered_rows(self) -> list[dict]:
@@ -65,7 +53,6 @@ class Database(rx.State):
             df["Recurso"] = df["Recurso"].str.strip().str.upper()
             if self.selected_category != "TOTAL GLOBAL":
                 df = df[df["Recurso"] == self.selected_category]
-            
             if self.search_text:
                 mask = df.apply(lambda r: r.astype(str).str.contains(self.search_text, case=False).any(), axis=1)
                 df = df[mask]
