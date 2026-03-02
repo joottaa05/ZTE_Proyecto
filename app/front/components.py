@@ -37,12 +37,23 @@ def pc_view(row: dict):
     )
 
 def mobile_view(row: dict):
+    """Vista móvil: Muestra ID y Prioridad. El Estado va al Pop-up."""
     return rx.dialog.root(
         rx.dialog.trigger(
             rx.box(
                 rx.flex(
-                    rx.vstack(rx.text(f"ID: {row['IdProceso']}", font_weight="bold"), rx.text(row["FechaAlta"], size="1", color="gray"), align_items="start", spacing="0"),
-                    rx.badge(row["Estado"], variant="surface"),
+                    rx.vstack(
+                        rx.text(f"ID: {row['IdProceso']}", font_weight="bold", size="3"),
+                        rx.text(row["FechaAlta"], size="1", color="gray"),
+                        align_items="start", spacing="0"
+                    ),
+                    # PRIORIDAD EN LA VISTA PRINCIPAL
+                    rx.badge(
+                        row["Prioridad"], 
+                        variant="solid", 
+                        size="2",
+                        color_scheme=rx.cond(row["Prioridad"] == "Alta", "red", rx.cond(row["Prioridad"] == "Media", "orange", "green"))
+                    ),
                     justify="between", align="center", width="100%"
                 ),
                 padding="1.2em", border_bottom="1px solid #EEE", cursor="pointer", width="100%",
@@ -50,10 +61,18 @@ def mobile_view(row: dict):
             )
         ),
         rx.dialog.content(
-            rx.dialog.title(f"ID: {row['IdProceso']}"),
+            rx.dialog.title(f"Detalle: {row['IdProceso']}"),
             rx.vstack(
-                rx.flex(rx.text("Prioridad:", font_weight="bold"), rx.badge(row["Prioridad"], variant="solid", color_scheme=rx.cond(row["Prioridad"] == "Alta", "red", "green")), justify="between", width="100%"),
-                rx.vstack(rx.text("Descripción:", font_weight="bold"), rx.text(row["Descripcion"], size="2"), align_items="start", width="100%", bg=rx.color_mode_cond("#F3F4F6", "#2D2D2E"), padding="1em", border_radius="8px"),
+                rx.divider(),
+                rx.flex(rx.text("Estado:", font_weight="bold"), rx.badge(row["Estado"], variant="surface"), justify="between", width="100%"),
+                rx.flex(rx.text("Prioridad:", font_weight="bold"), 
+                        rx.badge(row["Prioridad"], variant="solid", color_scheme=rx.cond(row["Prioridad"] == "Alta", "red", "green")), 
+                        justify="between", width="100%"),
+                rx.vstack(
+                    rx.text("Descripción:", font_weight="bold"),
+                    rx.text(row["Descripcion"], size="2", color=rx.color_mode_cond("#4B5563", "#D1D5DB")),
+                    align_items="start", width="100%", bg=rx.color_mode_cond("#F3F4F6", "#2D2D2E"), padding="1em", border_radius="8px"
+                ),
                 spacing="3", margin_top="1em"
             ),
             rx.flex(rx.dialog.close(rx.button("Cerrar", variant="soft", color_scheme="gray")), margin_top="1.5em", justify="end"),
