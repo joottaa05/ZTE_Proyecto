@@ -8,7 +8,9 @@ class Database(rx.State):
     search_text: str = ""
     priority_filter: str = "TODAS"
     
-    color_palette: list[str] = ["#005C97", "#00A8E8", "#003366", "#33CCFF", "#0078D7", "#6366F1", "#8B5CF6"]
+    priority_colors = {
+        "ALTA": "#FF4D4D", "MEDIA": "#FF9F43", "BAJA": "#2ECC71", "OTRO": "#8E8E93"
+    }
 
     def set_search_text(self, text: str): self.search_text = text
     def set_priority_filter(self, value: str): self.priority_filter = value
@@ -20,28 +22,22 @@ class Database(rx.State):
             for item in group:
                 name = item["name"]
                 all_counts[name] = all_counts.get(name, 0) + item["value"]
-        result = [{"name": k, "value": v} for k, v in all_counts.items()]
-        for i, item in enumerate(result):
-            item["fill"] = self.color_palette[i % len(self.color_palette)]
-        return result
+        return [{"name": n, "value": v, "fill": self.priority_colors.get(n, self.priority_colors["OTRO"])} for n, v in all_counts.items()]
 
     def load_data(self):
-        file_path = "db.csv"
-        if not os.path.exists(file_path): return rx.toast.error("db.csv no encontrado")
+        if not os.path.exists("db.csv"): return
         try:
-            df = pd.read_csv(file_path)
+            df = pd.read_csv("db.csv")
             df["Recurso"] = df["Recurso"].str.strip().str.upper()
+            df["Prioridad"] = df["Prioridad"].str.strip().str.upper()
             new_data = {}
             for grupo in df["Recurso"].unique():
                 f = df[df["Recurso"] == grupo]
-                counts = f["Estado"].value_counts().reset_index()
+                counts = f["Prioridad"].value_counts().reset_index()
                 counts.columns = ["name", "value"]
-                records = counts.to_dict("records")
-                for i, item in enumerate(records):
-                    item["fill"] = self.color_palette[i % len(self.color_palette)]
-                new_data[grupo] = records
+                new_data[grupo] = [{"name": r["name"], "value": r["value"], "fill": self.priority_colors.get(r["name"], self.priority_colors["OTRO"])} for _, r in counts.iterrows()]
             self.categorized_data = new_data
-        except Exception as e: print(e)
+        except: pass
 
     @rx.var
     def group_names(self) -> list[str]: return list(self.categorized_data.keys())
@@ -51,13 +47,11 @@ class Database(rx.State):
         try:
             df = pd.read_csv("db.csv")
             df["Recurso"] = df["Recurso"].str.strip().str.upper()
-            if self.selected_category != "TOTAL GLOBAL":
-                df = df[df["Recurso"] == self.selected_category]
+            if self.selected_category != "TOTAL GLOBAL": df = df[df["Recurso"] == self.selected_category]
             if self.search_text:
                 mask = df.apply(lambda r: r.astype(str).str.contains(self.search_text, case=False).any(), axis=1)
                 df = df[mask]
-            if self.priority_filter != "TODAS":
-                df = df[df["Prioridad"].str.upper() == self.priority_filter.upper()]
+            if self.priority_filter != "TODAS": df = df[df["Prioridad"].str.upper() == self.priority_filter.upper()]
             return df.to_dict("records")
         except: return []
 
