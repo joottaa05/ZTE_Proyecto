@@ -9,7 +9,7 @@ class Database(rx.State):
     priority_filter: str = "TODAS"
     
     priority_colors = {
-        "ALTA": "#FF4D4D", "MEDIA": "#FF9F43", "BAJA": "#2ECC71", "OTRO": "#8E8E93"
+        "ALTA": "#E5484D", "MEDIA": "#FF9533", "BAJA": "#30A46C", "OTRO": "#8E8E93"
     }
 
     def set_search_text(self, text: str): self.search_text = text
@@ -47,14 +47,19 @@ class Database(rx.State):
         try:
             df = pd.read_csv("db.csv")
             df["Recurso"] = df["Recurso"].str.strip().str.upper()
-            if self.selected_category != "TOTAL GLOBAL": df = df[df["Recurso"] == self.selected_category]
+            df["Prioridad"] = df["Prioridad"].str.strip().str.upper()
+            if self.selected_category != "TOTAL GLOBAL": 
+                df = df[df["Recurso"] == self.selected_category]
             if self.search_text:
                 mask = df.apply(lambda r: r.astype(str).str.contains(self.search_text, case=False).any(), axis=1)
                 df = df[mask]
-            if self.priority_filter != "TODAS": df = df[df["Prioridad"].str.upper() == self.priority_filter.upper()]
+            if self.priority_filter != "TODAS": 
+                df = df[df["Prioridad"] == self.priority_filter.upper()]
             return df.to_dict("records")
         except: return []
 
     def go_to_details(self, category: str):
         self.selected_category = category.upper()
+        self.search_text = ""
+        self.priority_filter = "TODAS"
         return rx.redirect("/details")

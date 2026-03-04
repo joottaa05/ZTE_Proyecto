@@ -1,2 +1,10 @@
+.web
+*.db
+*.py[cod]
+__pycache__/
+.states
+assets/external/
+tcanet_data.py
+datos_extrayer.csv
 # Created by venv; see https://docs.python.org/3/library/venv.html
 *
