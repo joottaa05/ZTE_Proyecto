@@ -8,9 +8,7 @@ class Database(rx.State):
     search_text: str = ""
     priority_filter: str = "TODAS"
     
-    priority_colors = {
-        "ALTA": "#E5484D", "MEDIA": "#FF9533", "BAJA": "#30A46C", "OTRO": "#8E8E93"
-    }
+    priority_colors = {"ALTA": "#E5484D", "MEDIA": "#FF9533", "BAJA": "#30A46C", "OTRO": "#8E8E93"}
 
     def set_search_text(self, text: str): self.search_text = text
     def set_priority_filter(self, value: str): self.priority_filter = value

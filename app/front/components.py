@@ -1,5 +1,15 @@
 import reflex as rx
 from app.back.database import Database
+from app.back.auth import AuthState
+from typing import Dict, Any
+
+class MobileRowState(rx.State):
+    expanded_items: dict[str, bool] = {}
+
+    def toggle(self, id_val: Any):
+        # Convertimos a string para usar como llave del dict
+        id_str = str(id_val)
+        self.expanded_items[id_str] = ~self.expanded_items.get(id_str, False)
 
 def navbar():
     return rx.flex(
@@ -9,59 +19,73 @@ def navbar():
             rx.menu.root(
                 rx.menu.trigger(
                     rx.button(
-                        rx.flex(rx.icon("layout-dashboard", size=18), "Recursos", rx.icon("chevron-down", size=14), spacing="2", align="center"), 
+                        rx.flex(rx.icon("layout-dashboard", size=18), rx.text("Recursos", display=["none", "inline"]), rx.icon("chevron-down", size=14), spacing="2", align="center"), 
                         variant="surface", radius="full"
                     )
                 ),
                 rx.menu.content(
-                    rx.menu.item(
-                        rx.flex(rx.icon("chart-pie", size=16), "TOTAL", spacing="2", align="center"), 
-                        on_select=lambda: Database.go_to_details("TOTAL GLOBAL")
-                    ),
+                    rx.menu.item(rx.flex(rx.icon("chart-pie", size=16), "TOTAL", spacing="2"), on_select=lambda: Database.go_to_details("TOTAL GLOBAL")),
                     rx.menu.separator(),
                     rx.foreach(Database.group_names, lambda name: rx.menu.item(name, on_select=lambda: Database.go_to_details(name))),
                 ),
             ),
-            rx.color_mode.button(radius="full"), spacing="4"
+            rx.button(rx.icon("log-out", size=18), color_scheme="red", variant="soft", on_click=AuthState.logout, radius="full"),
+            rx.color_mode.button(radius="full"), 
+            spacing="3"
         ),
-        padding="0.8em 2em", width="100%", bg=rx.color_mode_cond("white", "#111113"), position="fixed", top="0", z_index="100", border_bottom="1px solid #E5E7EB"
+        padding="0.8em 2em", width="100%", 
+        bg=rx.color_mode_cond("white", "#111113"), 
+        position="fixed", top="0", z_index="100", 
+        border_bottom=rx.color_mode_cond("1px solid #E5E7EB", "1px solid #334155")
     )
 
-def pc_view(row: rx.Var[dict]):
+def pc_view(row: Dict[str, Any]):
     return rx.table.row(
         rx.table.cell(row["IdProceso"], font_weight="bold"),
         rx.table.cell(row["FechaAlta"]),
         rx.table.cell(rx.badge(row["Estado"], variant="soft", color_scheme="blue")),
-        rx.table.cell(
-            rx.badge(
-                row["Prioridad"], 
-                variant="solid", 
-                color_scheme=rx.cond(
-                    row["Prioridad"] == "ALTA", "red", 
-                    rx.cond(row["Prioridad"] == "MEDIA", "orange", "green")
-                )
-            )
-        ),
+        rx.table.cell(rx.badge(row["Prioridad"], variant="solid", color_scheme=rx.cond(row["Prioridad"] == "ALTA", "red", rx.cond(row["Prioridad"] == "MEDIA", "orange", "green")))),
         rx.table.cell(row["Descripcion"]),
     )
 
-def mobile_view(row: rx.Var[dict]):
-    return rx.dialog.root(
-        rx.dialog.trigger(
-            rx.box(
-                rx.flex(
-                    rx.vstack(rx.text(f"ID: {row['IdProceso']}", font_weight="bold"), rx.text(row["FechaAlta"], size="1", color="gray"), align_items="start", spacing="0"),
-                    rx.badge(row["Prioridad"], variant="solid", color_scheme=rx.cond(row["Prioridad"] == "ALTA", "red", rx.cond(row["Prioridad"] == "MEDIA", "orange", "green"))),
-                    justify="between", align="center", width="100%"
+def mobile_view(row: Dict[str, Any]):
+    # El ID se extrae como Var para el estado
+    row_id = row["IdProceso"]
+    is_expanded = MobileRowState.expanded_items[row_id.to(str)]
+
+    return rx.box(
+        rx.vstack(
+            rx.flex(
+                rx.hstack(
+                    rx.text(f"ID: {row['IdProceso']}", font_weight="bold"),
+                    rx.icon(rx.cond(is_expanded, "chevron-up", "chevron-down"), size=16),
+                    spacing="2", align="center"
                 ),
-                padding="1.2em", border_bottom="1px solid #EEE", width="100%", cursor="pointer"
-            )
+                rx.badge(
+                    row["Prioridad"], 
+                    variant="solid", 
+                    color_scheme=rx.cond(row["Prioridad"] == "ALTA", "red", rx.cond(row["Prioridad"] == "MEDIA", "orange", "green"))
+                ),
+                justify="between", width="100%",
+                on_click=lambda: MobileRowState.toggle(row_id),
+                cursor="pointer"
+            ),
+            rx.cond(
+                is_expanded,
+                rx.vstack(
+                    rx.separator(size="4", margin_y="0.5em"),
+                    # CORRECCIÓN AQUÍ: rx.text.span en lugar de rx.span
+                    rx.text(rx.text.span("Fecha: ", font_weight="bold"), row["FechaAlta"], size="2"),
+                    rx.text(rx.text.span("Estado: ", font_weight="bold"), row["Estado"], size="2"),
+                    rx.text(rx.text.span("Descripción: ", font_weight="bold"), row["Descripcion"], size="2"),
+                    spacing="1", align_items="start", width="100%"
+                )
+            ),
+            spacing="2", align_items="start"
         ),
-        rx.dialog.content(
-            rx.dialog.title(f"Detalle: {row['IdProceso']}"),
-            rx.vstack(rx.flex(rx.text("Estado:"), rx.badge(row["Estado"], color_scheme="blue"), justify="between", width="100%"), rx.text(row["Descripcion"], size="2"), spacing="3"),
-            rx.flex(rx.dialog.close(rx.button("Cerrar", variant="soft")), margin_top="1.5em", justify="end"),
-        )
+        padding="1.2em", 
+        border_bottom=rx.color_mode_cond("1px solid #F1F5F9", "1px solid #334155"),
+        width="100%"
     )
 
 def get_pie_chart(ds, cat_name):
