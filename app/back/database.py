@@ -5,6 +5,7 @@ import reflex as rx
 
 REPORT_FILE_PATH = os.getenv("REPORT_PATH", "reporte_unificado.csv")
 
+
 PRIORITY_COLORS: dict[str, str] = {
     "ROJO": "#E5484D",
     "NARANJA": "#FF9533",
@@ -12,11 +13,13 @@ PRIORITY_COLORS: dict[str, str] = {
     "OTRO": "#8E8E93",
 }
 
+
 COLOR_SCHEME: dict[str, str] = {
     "ROJO": "red",
     "NARANJA": "orange",
     "NORMAL": "green",
 }
+
 
 # Solo estados de resolución reales — sin Pte. ni subestados
 ESTADOS_VALIDOS = [
@@ -30,7 +33,8 @@ ESTADOS_VALIDOS = [
     "EN ESPERA",
 ]
 
-# Valores en columna "notas" que son estados de resolución reales
+
+# Valores considerados estados de resolución "buenos"
 ESTADOS_RESOLUCION = {
     "EN RESOLUCION",
     "RESUELTO",
@@ -40,6 +44,11 @@ ESTADOS_RESOLUCION = {
     "EN COLA",
     "EN ESPERA",
 }
+
+
+def _normalizar_estado_valido(valor: str) -> str:
+    v = (valor or "").strip().upper()
+    return v if v in ESTADOS_RESOLUCION else ""
 
 
 def get_color_scheme(color: str) -> str:
@@ -57,18 +66,33 @@ def _load_df() -> pd.DataFrame:
     df["recurso_averia"] = df["recurso_averia"].fillna("").astype(str).str.strip()
 
     # "estado" en el CSV = subestado (Pte. Interno, EN CURSO...)
-    # "notas"  en el CSV = estado de resolución (En Resolucion, Resuelto...)
-    # Normalizamos ambos a mayúsculas para comparar
+    # "notas"  en el CSV = a veces estado de resolución, a veces otras cosas
     df["estado"] = df["estado"].fillna("").str.strip().str.upper()
     df["notas"] = df["notas"].fillna("").str.strip().str.upper()
 
-    # estado_resolucion = notas SOLO si es un estado conocido, si no queda vacío
-    df["estado_resolucion"] = df["notas"].where(df["notas"].isin(ESTADOS_RESOLUCION), other="")
+    # 1º intentamos sacar un estado válido de notas
+    estado_desde_notas = df["notas"].apply(_normalizar_estado_valido)
+    # 2º si no hay en notas, probamos en estado
+    estado_desde_estado = df["estado"].apply(_normalizar_estado_valido)
 
-    # subestado: si empieza por PTE o está vacío → "Desconocido"
-    df["estado"] = df["estado"].apply(
-        lambda v: "Desconocido" if (not v or v.startswith("PTE")) else v
+    # Estado de resolución único y limpio
+    df["estado_resolucion"] = estado_desde_notas.where(
+        estado_desde_notas != "", other=estado_desde_estado
     )
+
+    # Subestado: lo que quede en "estado" que no sea un estado válido
+    def _subestado(v: str) -> str:
+        if not v or v.startswith("PTE"):
+            return "Desconocido"
+        if v in ESTADOS_RESOLUCION:
+            return ""
+        return v
+
+    df["subestado"] = df["estado"].apply(_subestado)
+
+    # Descripción = recurso_averia (NOTAS no se muestra en la UI)
+    df["descripcion"] = df["recurso_averia"]
+
     return df
 
 
@@ -149,7 +173,7 @@ class Database(rx.State):
             if self.group_filter != "TODOS":
                 df = df[df["grupo"] == self.group_filter.upper()]
 
-            # Filtro por texto
+            # Filtro por texto (busca en todas las columnas originales)
             if self.search_text:
                 mask = df.apply(
                     lambda r: r.astype(str)
@@ -159,13 +183,22 @@ class Database(rx.State):
                 )
                 df = df[mask]
 
-            # Filtro por estado de resolución
+            # Filtro por estado de resolución (los "buenos")
             if self.status_filter != "TODOS":
                 df = df[df["estado_resolucion"] == self.status_filter.upper()]
 
             # Devolver solo las columnas que usa la UI, con nombres claros
             result = df[
-                ["id", "fecha", "web", "grupo", "color", "estado_resolucion", "estado"]
+                [
+                    "id",
+                    "fecha",
+                    "web",
+                    "grupo",
+                    "color",
+                    "estado_resolucion",
+                    "subestado",
+                    "descripcion",
+                ]
             ].copy()
             result.columns = [
                 "id",
@@ -175,6 +208,7 @@ class Database(rx.State):
                 "color",
                 "estado_resolucion",
                 "subestado",
+                "descripcion",
             ]
             return result.to_dict("records")
         except Exception as e:

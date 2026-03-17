@@ -83,41 +83,58 @@ def _badge_color(color_val: str) -> rx.Component:
     )
 
 
+def _estado_chip(row: Dict[str, Any]) -> rx.Component:
+    # Texto del chip: si hay estado_resolucion, lo usamos; si no, "SIN ESTADO"
+    estado_texto = rx.cond(
+        row["estado_resolucion"] == "",
+        "SIN ESTADO",
+        row["estado_resolucion"],
+    )
+    return rx.badge(
+        rx.text(
+            estado_texto,
+            size="2",
+            font_weight="500",
+        ),
+        variant="solid",
+        color_scheme=rx.cond(
+            row["color"] == "ROJO",
+            "red",
+            rx.cond(row["color"] == "NARANJA", "orange", "green"),
+        ),
+        padding_x="0.8em",
+        padding_y="0.4em",
+        radius="large",
+    )
+
+
 def pc_view(row: Dict[str, Any]) -> rx.Component:
     return rx.table.row(
+        rx.table.cell(row["fecha"]),  # FECHA primero
         rx.table.cell(row["id"], font_weight="bold"),
-        rx.table.cell(row["fecha"]),
         rx.table.cell(row["web"]),
-        rx.table.cell(row["grupo"]),
-        rx.table.cell(
-            rx.vstack(
-                rx.text(row["subestado"], size="2", font_weight="500"),
-                rx.text(
-                    row["estado_resolucion"],
-                    size="1",
-                    color=rx.color_mode_cond("#9CA3AF", "#6B7280"),
-                ),
-                spacing="1",
-                align="start",
-            )
+        rx.cond(
+            Database.selected_category == "TOTAL GLOBAL",
+            rx.table.cell(row["grupo"]),
         ),
-        rx.table.cell(_badge_color(row["color"])),
+        rx.table.cell(_estado_chip(row)),  # estado en chip coloreado
+        rx.table.cell(row["descripcion"]),  # Descripción al final
     )
 
 
 def mobile_view(row: Dict[str, Any]) -> rx.Component:
-    row_id = row["id"].to(str)
-    is_expanded = MobileRowState.expanded_items[row_id]
+    row_id = str(row["id"])
+    is_expanded = MobileRowState.expanded_items.get(row_id, False)
     return rx.box(
         rx.vstack(
             rx.flex(
                 rx.hstack(
-                    rx.text(f"ID: {row['id']}", font_weight="bold"),
+                    rx.text(f"{row['fecha']} · ID: {row['id']}", font_weight="bold"),
                     rx.icon(rx.cond(is_expanded, "chevron-up", "chevron-down"), size=16),
                     spacing="2",
                     align="center",
                 ),
-                _badge_color(row["color"]),
+                _estado_chip(row),  # mismo chip en móvil
                 justify="between",
                 width="100%",
                 on_click=lambda: MobileRowState.toggle(row["id"]),
@@ -127,16 +144,19 @@ def mobile_view(row: Dict[str, Any]) -> rx.Component:
                 is_expanded,
                 rx.vstack(
                     rx.separator(size="4", margin_y="0.5em"),
-                    rx.text(rx.text.span("Fecha: ", font_weight="bold"), row["fecha"], size="2"),
                     rx.text(rx.text.span("Web: ", font_weight="bold"), row["web"], size="2"),
-                    rx.text(rx.text.span("Grupo: ", font_weight="bold"), row["grupo"], size="2"),
-                    rx.text(
-                        rx.text.span("Estado: ", font_weight="bold"),
-                        row["estado_resolucion"],
-                        size="2",
+                    rx.cond(
+                        Database.selected_category == "TOTAL GLOBAL",
+                        rx.text(
+                            rx.text.span("Grupo: ", font_weight="bold"),
+                            row["grupo"],
+                            size="2",
+                        ),
                     ),
                     rx.text(
-                        rx.text.span("Subestado: ", font_weight="bold"), row["subestado"], size="2"
+                        rx.text.span("Descripción: ", font_weight="bold"),
+                        row["descripcion"],
+                        size="2",
                     ),
                     spacing="1",
                     align_items="start",

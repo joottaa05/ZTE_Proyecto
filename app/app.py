@@ -95,17 +95,20 @@ def details() -> rx.Component:
                         spacing="2",
                         flex_wrap="wrap",
                     ),
-                    # Vista escritorio — cabecera con columna "Web" añadida
+                    # Vista escritorio
                     rx.box(
                         rx.table.root(
                             rx.table.header(
                                 rx.table.row(
-                                    rx.table.column_header_cell("ID"),
                                     rx.table.column_header_cell("FECHA"),
+                                    rx.table.column_header_cell("ID"),
                                     rx.table.column_header_cell("WEB"),
-                                    rx.table.column_header_cell("GRUPO"),
+                                    rx.cond(
+                                        Database.selected_category == "TOTAL GLOBAL",
+                                        rx.table.column_header_cell("GRUPO"),
+                                    ),
                                     rx.table.column_header_cell("ESTADO"),
-                                    rx.table.column_header_cell("ALERTA"),
+                                    rx.table.column_header_cell("DESCRIPCIÓN"),
                                 )
                             ),
                             rx.table.body(rx.foreach(Database.filtered_rows, pc_view)),
