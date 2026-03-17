@@ -187,6 +187,15 @@ class Database(rx.State):
             if self.status_filter != "TODOS":
                 df = df[df["estado_resolucion"] == self.status_filter.upper()]
 
+            # ---------- ORDENACIÓN ----------
+            # Mapa de prioridad de color: menor número = más arriba (NARANJA=0, ROJO=1, resto=2)
+            color_order_map = {"NARANJA": 0, "ROJO": 1}
+            df["order_color"] = df["color"].map(color_order_map).fillna(2).astype(int)
+
+            # Ordenar primero por color (según prioridad) y después por web (alfabético)
+            df = df.sort_values(by=["order_color", "web"], ascending=[True, True])
+            # ---------- FIN ORDENACIÓN ----------
+
             # Devolver solo las columnas que usa la UI, con nombres claros
             result = df[
                 [
